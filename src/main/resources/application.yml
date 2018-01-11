@@ -1,0 +1,42 @@
+server:
+  port: 8000
+spring:
+  application:
+      name: sinopharm
+  jpa:
+    generate-ddl: false
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+  datasource:                           # 指定数据源
+    url: jdbc:mysql://localhost:3306/security_api?characterEncoding=UTF-8&verifyServerCertificate=false&useSSL=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    database: 0
+    host: 127.0.0.1
+    password: ''
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+    port: 6379
+    timeout: 0
+mybatis:
+    type-aliases-package: org.spring.springboot.domain
+    mapper-locations: classpath:mapper/*.xml
+logging:                                # 配置日志级别，让hibernate打印出执行的SQL
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
+
